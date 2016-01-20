@@ -1,4 +1,7 @@
 class RestaurantsController < ApplicationController
+  include RestaurantsHelper
+  before_action :authenticate_user!, :except => [:index, :show]
+
   def index
     @restaurants = Restaurant.all
   end
@@ -8,7 +11,7 @@ class RestaurantsController < ApplicationController
   end
 
   def create
-    @restaurant = Restaurant.new(restaurant_params)
+    @restaurant = current_user.restaurants.new(restaurant_params)
     if @restaurant.save
       redirect_to restaurants_path
     else
@@ -22,6 +25,10 @@ class RestaurantsController < ApplicationController
 
   def edit
     @restaurant = Restaurant.find(params[:id])
+    unless current_user.restaurants.include? @restaurant
+      flash[:notice] = 'error: you must be the author to edit a restaurant'
+      redirect_to restaurants_path
+    end
   end
 
   def update
@@ -32,12 +39,12 @@ class RestaurantsController < ApplicationController
 
   def destroy
     @restaurant = Restaurant.find(params[:id])
-    @restaurant.destroy
-    flash[:notice] = 'Restaurant deleted successfully'
+    if current_user.restaurants.include? @restaurant
+      @restaurant.destroy
+      flash[:notice] = 'Restaurant deleted successfully'
+    else
+      flash[:notice] = "error: you are not the author of the entry for #{@restaurant.name}"
+    end
     redirect_to restaurants_path
-  end
-
-  def restaurant_params
-    params.require(:restaurant).permit(:name)
   end
 end

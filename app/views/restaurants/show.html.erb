@@ -1,4 +1,4 @@
-<p><%= @restaurant.name %></p>
+<h2><%= @restaurant.name %></h2>
 <p><%= @restaurant.description %></p>
 <h3>Reviews for <%= @restaurant.name %></h3>
 <% if @restaurant.reviews.any? %>
@@ -7,6 +7,7 @@
    <li>
      <%= review.thoughts %>
      <%= review.rating %> / 5
+     <%= link_to "Delete review", restaurant_review_path(@restaurant, review), method: :delete %>
    </li>
    <% end %>
 </ul>
