@@ -42,11 +42,21 @@ feature 'reviewing' do
       user = create(:user)
       restaurant = create(:restaurant, name: 'KFC', user: user)
       create(:review, restaurant: restaurant, user: user)
-      new_user = create(:user, email: "newuser@email.com")
+      new_user = create(:user, email: 'newuser@email.com')
       sign_in_as(new_user)
       visit '/restaurants'
       click_link 'Delete review'
       expect(page).to have_content 'error'
     end
+  end
+
+  scenario 'displays an average rating for all reviews' do
+    user = create(:user)
+    user2 = create(:user, email: 'email@email.com')
+    restaurant = create(:restaurant, user: user)
+    create(:review, rating: 3, restaurant: restaurant, user: user)
+    create(:review, rating: 5, restaurant: restaurant, user: user2)
+    visit '/restaurants'
+    expect(page).to have_content('Average rating: ★★★★☆')
   end
 end

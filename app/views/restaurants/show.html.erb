@@ -1,6 +1,7 @@
 <h2><%= @restaurant.name %></h2>
 <p><%= @restaurant.description %></p>
 <h3>Reviews for <%= @restaurant.name %></h3>
+<h3>Average rating: <%= star_rating(@restaurant.average_rating) %></h3>
 <% if @restaurant.reviews.any? %>
  <ul>
    <% @restaurant.reviews.each do |review| %>

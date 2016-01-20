@@ -4,4 +4,10 @@ class Restaurant < ActiveRecord::Base
            dependent: :destroy
   belongs_to :user
   validates :name, length: { minimum: 3 }, uniqueness: true
+
+  def average_rating
+    return 'N/A' if reviews.none?
+    reviews.inject(0) { |memo, review| memo + review.rating } / reviews.size
+    # reviews.average(:rating)
+  end
 end
