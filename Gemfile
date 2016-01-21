@@ -37,6 +37,7 @@ group :development, :test do
   gem 'factory_girl_rails'
   gem 'poltergeist'
   gem 'database_cleaner'
+  gem 'launchy'
 end
 
 group :development do

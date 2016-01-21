@@ -51,9 +51,10 @@ describe '#average_rating' do
   end
   context 'multiple reviews' do
     it 'returns the average' do
-      restaurant = Restaurant.create(name: 'The Ivy')
-      restaurant.reviews.create(rating: 1)
-      restaurant.reviews.create(rating: 5)
+      restaurant = Restaurant.new(name: 'The Ivy')
+      restaurant.save(validate: false)
+      restaurant.reviews.new(rating: 1).save(validate: false)
+      restaurant.reviews.new(rating: 5).save(validate: false)
       expect(restaurant.average_rating).to eq 3
     end
   end

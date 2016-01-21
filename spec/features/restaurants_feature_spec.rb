@@ -69,6 +69,18 @@ feature 'restaurants' do
        expect(page).to have_content 'error'
      end
   end
+  context 'uploading pictures' do
+    scenario 'let a user upload a picture' do
+      user = create(:user)
+      sign_in_as(user)
+      visit '/restaurants'
+      click_link 'Add a restaurant'
+      fill_in 'Name', with: 'KFC'
+      page.attach_file('restaurant[image]', Rails.root + 'spec/mock/restaurant_image.png')
+      click_button 'Create Restaurant'
+      expect(page).to have_css("img[alt*='Restaurant image']")
+    end
+  end
   context 'deleting restaurants' do
     scenario 'removes a restaurant when a user clicks a delete link' do
       user       = create(:user)
