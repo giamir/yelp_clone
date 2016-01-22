@@ -82,7 +82,7 @@ GEM
       tins (~> 1.6.0)
     database_cleaner (1.5.1)
     debug_inspector (0.0.2)
-    devise (3.5.4)
+    devise (3.5.5)
       bcrypt (~> 3.0)
       orm_adapter (~> 0.1)
       railties (>= 3.2.6, < 5)
@@ -130,7 +130,7 @@ GEM
     mime-types (2.99)
     mimemagic (0.3.0)
     mini_portile2 (2.0.0)
-    minitest (5.8.3)
+    minitest (5.8.4)
     multi_json (1.11.2)
     multi_xml (0.5.5)
     multipart-post (2.0.0)
@@ -296,7 +296,7 @@ DEPENDENCIES
   launchy
   omniauth-facebook
   paperclip
-  pg (~> 0.15)
+  pg
   poltergeist
   rails (= 4.2.5)
   rspec-collection_matchers
