@@ -10,6 +10,8 @@
      <%= review.thoughts %>
      <%= review.rating %> / 5
      <%= link_to "Delete review", review_path(review), method: :delete %>
+     <%= link_to "Endorse review", review_endorsements_path(review), class: 'endorsements-link', method: :post %>
+     <span class="endorsements_count"> <%= review.endorsements.count %> </span> <%= 'endorsement'.pluralize(review.endorsements.count) %>
    </li>
    <% end %>
 </ul>

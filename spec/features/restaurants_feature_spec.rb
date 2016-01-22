@@ -2,6 +2,10 @@ require 'rails_helper'
 
 feature 'restaurants' do
   context 'no restaurants have been added' do
+    before do
+      user = create(:user)
+      sign_in_as(user)
+    end
     scenario 'should display a prompt to add a restaurant' do
       visit '/restaurants'
       expect(page).to have_content 'No restaurants yet'
@@ -78,6 +82,7 @@ feature 'restaurants' do
       fill_in 'Name', with: 'KFC'
       page.attach_file('restaurant[image]', Rails.root + 'spec/mock/restaurant_image.png')
       click_button 'Create Restaurant'
+      click_link 'KFC'
       expect(page).to have_css("img[alt*='Restaurant image']")
     end
   end

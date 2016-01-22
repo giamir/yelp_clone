@@ -1,3 +1,74 @@
 // Place all the styles related to the restaurants controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+
+.panel{
+  margin: 15px 5px 15px 0;
+  padding: 0;
+}
+.last{
+  margin: 15px 0;
+}
+.panel-body{
+  padding: 0;
+  height: 200px;
+  display: block;
+
+  h2{
+    font-size: 20px;
+    margin: 0;
+  }
+
+  .main-info{
+    background: {
+      repeat: no-repeat;
+      position: center center;
+      size: cover;
+    };
+    &:before {
+      content: '';
+  		position: absolute;
+  		top: 0;
+  		right: 0;
+  		bottom: 0;
+  		left: 0;
+  		background-image: linear-gradient(rgba(0,0,0,.1), rgba(0,0,0,.3), rgba(0,0,0,.7));
+    }
+    height: 70%;
+    display: block;
+    position: relative;
+    width: 100%;
+
+    .basic-info{
+      bottom: 15px;
+      left: 15px;
+      position:absolute;
+        a{
+          color: white;
+        }
+    }
+    .rating{
+      bottom: 15px;
+      right: 15px;
+      position:absolute;
+      color: white;
+    }
+  }
+
+  .more-details{
+    padding: 15px;
+    .reviews-counter{
+      display: inline-block;
+      padding: 9px 0;
+      text-transform: uppercase;
+      font-size: 10px;
+    }
+    .actions{
+      display: inline-block;
+      a{
+        padding: 7px 3px;
+      }
+    }
+  }
+
+}

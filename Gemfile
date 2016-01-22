@@ -24,6 +24,8 @@ gem 'devise'
 gem 'omniauth-facebook'
 gem 'paperclip'
 gem 'aws-sdk', '< 2.0'
+gem 'bootstrap-sass', '~> 3.2.0'
+gem 'autoprefixer-rails'
 # bundle exec rake doc:rails generates the API under doc/api.
 gem 'sdoc', '~> 0.4.0', group: :doc
 
@@ -38,6 +40,8 @@ group :development, :test do
   gem 'poltergeist'
   gem 'database_cleaner'
   gem 'launchy'
+  gem 'dotenv-rails'
+  gem 'coveralls', require: false
 end
 
 group :development do

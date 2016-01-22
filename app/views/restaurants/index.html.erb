@@ -1,4 +1,4 @@
-<% if @restaurants.any? %>
+<!-- <% if @restaurants.any? %>
   <% @restaurants.each do |restaurant| %>
   <h2><%= link_to restaurant.name, restaurant_path(restaurant) %></h2>
   <h3>Average rating: <%= star_rating(restaurant.average_rating) %></h3>
@@ -27,4 +27,40 @@
 <% else %>
   No restaurants yet
 <% end %>
-<%= link_to 'Add a restaurant', new_restaurant_path() %>
+<%= link_to 'Add a restaurant', new_restaurant_path() %> -->
+
+
+
+<% if @restaurants.any? %>
+  <% @restaurants.each_with_index do |restaurant, i| %>
+  <% if i % 3 == 0 %><div class="row"><% end %>
+    <div class="col-xs-12 col-sm-12 col-md-4 col-lg-4">
+      <div class="panel panel-default <% if (i + 1) % 3 == 0 %>last<% end %>">
+        <div class="panel-body">
+          <section class="main-info" style='background-image: url("<%= restaurant.image.url(:medium) %>")'>
+            <section class="basic-info">
+              <h2><%= link_to restaurant.name, restaurant_path(restaurant) %></h2>
+            </section>
+            <section class="rating">
+              <%= star_rating(restaurant.average_rating) %>
+            </section>
+          </section>
+          <section class="more-details">
+            <section class="reviews-counter">
+              <%= restaurant.reviews.count %> <%= 'review'.pluralize(restaurant.reviews.count) %>
+            </section>
+            <section class="actions pull-right">
+              <%= link_to '', edit_restaurant_path(restaurant), title: "Edit #{restaurant.name}", class: 'glyphicon glyphicon-pencil' %>
+              <%= link_to '', restaurant_path(restaurant), title: "Delete #{restaurant.name}", method: :delete, class: 'glyphicon glyphicon-trash' %>
+              <%= link_to '', new_restaurant_review_path(restaurant), title: "Review #{restaurant.name}", class: 'glyphicon glyphicon-edit' %>
+            </section>
+          </section>
+        </div>
+      </div>
+    </div>
+  <% if (i + 1) % 3 == 0 || restaurant == @restaurants.last %></div><% end %>
+  <% end %>
+<% else %>
+  No restaurants yet
+<% end %>
+<hr>

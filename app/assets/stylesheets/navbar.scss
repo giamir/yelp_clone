@@ -1,0 +1,11 @@
+nav {
+  background: #fff;
+  border-radius: 0;
+}
+.nav > li > a{
+  padding: 15px 7px;
+}
+.nav > li > a:hover{
+  background: none;
+  text-decoration: underline;
+}
